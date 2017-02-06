@@ -81,3 +81,20 @@ for i in 0..5
 end #don't forget to put this when ending an if/else statement
 
 #Arrays  ------------------------------------------------------------------------------
+a = ["Matz", "Guido", "Dojo", "Choi", "John"]
+b = [5, 6, 9, 3, 1, 2, 4, 7, 8, 10]
+c = ["Dojo", 9]
+
+puts a[0] # Answer is Matz
+puts a[1] #Answer is Guido
+puts a+b #Returns both array A & B on separate lines
+
+x = a+b
+puts x.to_s #Converts array A & B to a string all on one line
+
+x = (a+b)-c #when the code below runs, "Dojo" and 9 will be excluded in the string
+puts x.to_s
+
+a.delete("Choi") #removes "Choi from the array"
+puts a
+puts "Length of a is #{a.length}"
