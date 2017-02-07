@@ -1,8 +1,12 @@
 # Print 1-255: Write a program (sets of instructions) that would print all the numbers from 1 to 255.
-(1..255).each { |n| puts n }
+for i in 1..255
+      puts "Printing #{i}"
+end
 
 # Print odd numbers between 1-255: Write a program (sets of instructions) that would print all the odd numbers from 1 to 255.
-puts (1..255).select(&:odd?)
+for i in 1..255
+      puts "Printing #{i}" if i % 2 == 1
+end
 
 # Print Sum: Write a program that would print the numbers from 0 to 255 but this time, it would also print the sum of the numbers that have been printed so far. For example, your output should be something like this:
 # New number: 0 Sum: 0
@@ -12,19 +16,22 @@ puts (1..255).select(&:odd?)
 # New Number: 255 Sum: ___.
 # Do NOT use an array to do this exercise.
 sum = 0
-(1..255).each { |n| puts "New number: #{n} Sum: #{sum+=n}" }
+for i in 1..255
+      puts "New number: #{i} Sum: #{sum+=i}"
+end
 
 # Iterating through an array: Given an array X, say [1,3,5,7,9,13], write a program that would iterate through each member of the array and print each value on the screen.  Being able to loop through each member of the array is extremely important.
 x = [1,3,5,7,9,13]
 puts x
-x.each { |n| puts n }
+x.each
 
 # Find Max: Write a program (sets of instructions) that takes any array and prints the maximum value in the array. Your program should also work
-puts X.max
+x = [1,3,5,7,9,13]
+puts x.max
 
 # Get Average: Write a program that takes an array, and prints the AVERAGE of the values in the array. For example for an array [2, 10, 3], your program should print an average of 5. Again, make sure you come up with a simple base case and write instructions to solve that base case first, then test your instructions for other complicated cases. You can use a count function with this assignment.
-average_array = [2, 10, 3]
-puts average_array.reduce(:+) / average_array.size
+avg = [2, 10, 3]
+puts avg.reduce(:+) / avg.size
 
 # Array with Odd Numbers: Write a program that creates an array 'y' that contains all the odd numbers between 1 to 255. When the program is done, 'y' should have the value of [1, 3, 5, 7, ... 255].
 puts y = (1..255).select(&:odd?)
