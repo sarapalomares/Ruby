@@ -1,6 +1,6 @@
 # .delete(key) => deletes and returns a value associated with the key
 # e.g. h = {:first_name => "Coding", :last_name => "Dojo"}; h.delete(:last_name); print h      #=> [:first_name, "Coding"]
-x = {:f_name => "Sara", :l_name => "Palomares"}
+x = {:f_name => "Sara", :l_name => "Palomares"} #all keys start with a colon :
 x.delete(:l_name)
 puts x[:f_name], x[:l_name]
 
@@ -22,4 +22,4 @@ if x.has_value?("Sara")
       puts "X has a value called Sara!"
 else
       puts "X does NOT have a value called Sara"
-end            
+end
