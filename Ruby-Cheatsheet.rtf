@@ -1,0 +1,256 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red46\green111\blue253;\red127\green127\blue127;\red46\green111\blue253;
+\red0\green0\blue0;\red127\green127\blue127;}
+{\*\expandedcolortbl;;\csgenericrgb\c18039\c43529\c99216;\csgenericrgb\c49804\c49804\c49804;\csgenericrgb\c18039\c43529\c99216;
+\csgenericrgb\c0\c0\c0;\csgenericrgb\c49804\c49804\c49804;}
+\margl1440\margr1440\vieww6260\viewh16000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f0\b\fs36 \cf2 \ul \ulc2 Ruby Cheatsheet
+\b0\fs24 \cf0 \ulnone \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 \
+\cf2 **** Creating a Model *****\cf0 \
+
+\b0 Type in terminal:\
+rails new test_project\
+cd test_project\
+rails generate (or just g) model User first_name:string last_name:string email:string password:string age:integer\
+
+\i \
+\cf3 #in Atom, check out the db > migrate files to see your tables. Check out models > User to see your model\
+#Rails adds primary key, created_at, and updated_at automatically\
+\
+There are many data types that we could put after our attributes.\
+\
+:binary\
+:boolean\
+:date\
+:datetime\
+:decimal\
+:float\
+:integer\
+:primary_key\
+:references\
+:string\
+:text\
+:time\
+:timestamp\cf0 \
+\
+
+\i0 rake db:migrate
+\i  \
+\cf3 #will read the migration file and creates the database attached to our model. Needs to be typed in terminal every time a migration file is made. Confirm this migrated by navigating to db > migrate > scheme.db\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf4 **** Adding to our Database *****
+\i\b0 \cf3 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf0 Type in terminal:
+\i \cf3 \
+
+\i0 \cf0 rails console 
+\i \cf3 #or rails c opens up our console so we can start adding to the db\
+
+\i0 \cf0 user.new\
+user1 = User.new
+\i \cf3 \
+
+\i0 \cf0 user1[:first_name] = \'93Eddard\'94
+\i \cf3 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf5 user1[:last_name] = \'93Stark\'94\
+user1[:age] = 40\
+user1
+\i \cf3  #will give you what our information on User1 is so far\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf0 user1.save 
+\i \cf3 #you will see the \'93Insert Into\'94 SQL command\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf3 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf0 user2 = User.new(first_name:\'94Cercei\'94, last_name:\'94Lannister\'94, age:35) 
+\i \cf3 #shows another way to create a user all on 1 line!\
+
+\i0 \cf0 user2.save\
+\
+User.create(first_name:\'94Jon\'94, last_name:\'94Snow, age:17, email:\'94know@nothing.com\'94, password:\'94password\'94) 
+\i \cf3 #creates user, inserted into db, and returns object to us. Even easier way.\
+\
+
+\i0 \cf0 User.all 
+\i \cf3 #gives us an array of all of our users\
+\
+
+\i0 \cf0 hirb.enable 
+\i \cf3 #only works if you\'92ve installed the hirb gem\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf5 User.all  
+\i \cf3 #gives us a nice table-like visual of our users inside the terminal. Much nicer!\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf0 User.first 
+\i \cf3 #gives us the first user in our database
+\i0 \cf0 \
+User.last 
+\i \cf3 #gives us the last. User in our database
+\i0 \cf0 \
+User.find(5) 
+\i \cf3 #if we know the ID number, it will give us the info on this user
+\i0 \cf0 \
+User.find_by(first_name:\'94Jon\'94) 
+\i \cf3 #will give us all of the users with the first name of Jon\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf5 User.last.update(age:18) 
+\i \cf6 #changes Jon\'92s age to 18
+\i0 \cf5 \
+User.first.update(first_name:\'94Ned\'94, email:\'94dead@dead.com\'94) 
+\i \cf6 #changes Eddard\'92s name to Ned and inputs an email address since it was empty before\cf3 \
+\
+
+\i0\b \cf4 **** Validations *****\
+\
+
+\b0 \cf5 Go into Atom and navigate to models > user.rb\
+In the \'93Class User\'94 section, type the following:\
+Validates :first_name, presence: true 
+\i \cf6 #now any time we create a new user, the first name field must be present\
+
+\i0 \cf5 Now we can go into our console and type rails c and begin testing validations\
+In terminal:\
+User.new\
+jon.save 
+\i \cf6 #throws up a false, rollback transaction error because we have not entered in a first name
+\i0 \cf5 \
+jon.errors.full_messages 
+\i \cf3 #gives us the error messages based on the validations we\'92ve set up
+\b \
+
+\i0 \cf4 \
+
+\b0 \cf5 We can take it a step further in our validations and type the following:\
+Validates :first_name, :last_name, presence: true, length: \{ in: 2..20 \} 
+\i \cf3 #length must be between 2 and 20 characters
+\b \
+
+\i0 \cf4 \
+
+\b0 \cf5 Back in terminal:\
+reload! 
+\i \cf3 #will reload the latest changes we made to our model\
+\
+Here is a short list of other types of validations:\
+\
+:length - validates the length of an attribute's value\
+:minimum, :maximum, :in, :is\
+:numericality - validates whether an attribute is a numeric value\
+: :odd, :even, and many others\
+:presence - validates that the specified attributes are not empty\
+:uniqueness - validates whether the value is unique in the corresponding database table. NOTE: always create a unique index in the database too.\
+:confirmation - use this when you have two text fields that should receive exactly the same content; assumes the second field name has "_confirmation" appended\
+validates_associated - use this when your model has associations with other models and they also need to be validated\
+:acceptance - validate whether a checkbox was checked when a form was submitted (usually for 'terms and conditions')\
+also, get familiar with :message and :on
+\b \
+
+\i0 \cf4 \
+**** Email Validations *****\
+\
+
+\b0 \cf5 Go into Atom and navigate to models > user.rb\
+In the \'93Class User\'94 section above \'93validates\'94, type the following: \
+EMAIL_REGEX = /\\A([^@\\s]+)@((?:[-a-z0-9]+\\.)+[a-z]+)\\z/i\
+validates :email, presence: true, uniqueness: \{ case_sensitive: false \}, format: \{ with: EMAIL_REGEX \} \
+Go back to rails console and type: reload!\
+arya = User.new(first_name:\'94Arya\'94, last_name:\'94S\'94, email:\'94arya@com\'94) \
+arya.save 
+\i \cf3 #this will throw up an error because the email address is invalid. If we type arya.errors.full_messages, we can see what the error specifically is
+\b \
+
+\i0\b0 \cf5 arya[:last_name] = \'93Stark\'94\
+arya[:email] = \'93arya@stark.com\'94\
+arya.valid? 
+\i \cf3 #terminal will tell us if her fields are valid to save
+\b \
+
+\i0\b0 \cf5 arya.save
+\b \cf4 \
+\
+To make sure all email addresses entered into your database are lowercase..\
+\
+
+\b0 \cf5 Go into Atom and navigate to models > user.rb\
+In the \'93Class User\'94 section under the validating text, type the following: 
+\b \cf4 \
+
+\b0 \cf5 before_save do\
+	self.email.downcase!\
+end\
+\
+
+\b \cf4 **** Relationships *****\
+
+\b0 \cf5 \
+Example of a one to many relationship.. type in terminal (system console NOT rails console):\
+rails g model Product name:string price:float description:text 
+\b user:references
+\b0 \
+rake db:migrate\
+Go to user.rb in the Models folder and add \'93has_many :products\'94 as the very first line under class User \
+
+\i \cf3 #has_one = one user can have one product\
+#has_many = user can have many products\
+#has_many:through = allows associations even when there isn\'92t a direct connection between the models
+\i0 \cf5 \
+\
+Terminal\'85 rail c and enable Hirb\
+Product.new\
+User.first.products.new \
+User.first.products.create(name:"iPad Gen 1", price:"199.99", description:"Used, but clean")\
+User.first.products 
+\i \cf3 #Shows all the products that User #1 has\
+
+\i0 \cf5 Product.all 
+\i \cf3 #Shows all products
+\b \
+
+\i0 \cf4 \
+**** Migrations *****\
+\
+
+\b0 \cf5 Say you want to go back to your table and add a column. We can add a category to products for example.\
+In system console terminal:\
+rails generate migration AddCategoryToProducts 
+\i \cf3 #you can name this anything you want, but it helps to name it something that will be easily understood
+\i0\b \cf4 \
+
+\b0 \cf5 Now go into Atom and open up the new file we just created in the Migrate folder\
+Type this in the \'93def change\'94 method: add_column :products, :category, :string
+\b \cf4 \
+
+\b0 \cf5 system console terminal: rake db:migrate
+\b \cf4 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+\i\b0 \cf3 \
+}
