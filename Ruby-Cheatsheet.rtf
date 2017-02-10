@@ -4,7 +4,7 @@
 \red0\green0\blue0;\red127\green127\blue127;}
 {\*\expandedcolortbl;;\csgenericrgb\c18039\c43529\c99216;\csgenericrgb\c49804\c49804\c49804;\csgenericrgb\c18039\c43529\c99216;
 \csgenericrgb\c0\c0\c0;\csgenericrgb\c49804\c49804\c49804;}
-\margl1440\margr1440\vieww6260\viewh16000\viewkind0
+\margl1440\margr1440\vieww8480\viewh11440\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs36 \cf2 \ul \ulc2 Ruby Cheatsheet
@@ -17,6 +17,7 @@
 \b0 Type in terminal:\
 rails new test_project\
 cd test_project\
+Atom . and then go into \'93gem file\'94 and add hirb\
 rails generate (or just g) model User first_name:string last_name:string email:string password:string age:integer\
 
 \i \
@@ -124,7 +125,7 @@ User.first.update(first_name:\'94Ned\'94, email:\'94dead@dead.com\'94)
 
 \b0 \cf5 Go into Atom and navigate to models > user.rb\
 In the \'93Class User\'94 section, type the following:\
-Validates :first_name, presence: true 
+validates :first_name, presence: true 
 \i \cf6 #now any time we create a new user, the first name field must be present\
 
 \i0 \cf5 Now we can go into our console and type rails c and begin testing validations\
