@@ -1,9 +1,9 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;\red46\green111\blue253;\red127\green127\blue127;\red0\green0\blue0;
-\red127\green127\blue127;}
+}
 {\*\expandedcolortbl;;\csgenericrgb\c18039\c43529\c99216;\csgenericrgb\c49804\c49804\c49804;\csgenericrgb\c0\c0\c0;
-\csgenericrgb\c49804\c49804\c49804;}
+}
 \margl1440\margr1440\vieww19840\viewh11440\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
 
@@ -253,33 +253,64 @@ Type this in the \'93def change\'94 method: add_column :products, :category, :st
 \b0 \cf4 system console terminal: rake db:migrate
 \b \cf2 \
 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf2 **** Routes *****\cf2 \
+**** Routes *****\
 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \b0 \cf4 All CRUD applications can really be broken down into 7 unique actions. For example, let's say that we want to create a web application that allows us to create/retrieve/update/delete products. The web application needs to provide the following 7 pages/features.  rails generate controller [controller name here]\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 \cf0 {{\NeXTGraphic Screen Shot 2017-02-14 at 11.28.06 AM.png \width18580 \height6320
-}¬}
+}¬}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
 \b \cf2 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf2 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf2 **** Controllers *****\
+\
+**** Controllers *****\
+\
+\pard\pardeftab720\sl340\partightenfactor0
+
+\b0 \cf4 After the routes determine which controller and method should be run, it is up to the controller to make sense of the request and produce the appropriate output. In Rails, we will write most of our logic in our models, and use the controller to control flow.
+\b \cf2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i\b0 \cf3 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i0 \cf4 rails generate controller [controller name here.. 
-\b \cf4 \ul \ulc4 controller name is capitalized and plura
-\b0 \cf4 \ulnone l] #
+\b \ul \ulc4 controller name is capitalized and plura
+\b0 \ulnone l] #
 \i \cf3 Note: controller name is always plural. This will create an empty controller. \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i0 \cf4 rails generate controller [controller name here.. 
-\b \cf4 \ul \ulc4 controller name is capitalized and plura
-\b0 \ulnone l\cf4 ] [list of methods separated by space] 
-\i \cf5 #Example: 
-\b rails generate controller Comments index new 
-\b0 edit. If \cf3 you know what specific methods you want in the controller, you can enter them on the command line, and those methods will be automatically defined in the controller file that is generated.}
+\b \ul controller name is capitalized and plura
+\b0 \ulnone l] [list of methods separated by space] 
+\i \cf3 #Example: 
+\b \cf3 rails generate controller Comments index new 
+\b0 \cf3 edit. If you know what specific methods you want in the controller, you can enter them on the command line, and those methods will be automatically defined in the controller file that is generated.\
+\
+
+\i0 \cf4 Any variable that begins with \'93@\'93 automatically becomes available in the View file.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf2  ***** Passing Information to the Views Using @variables  *****
+\b0 \cf4 \
+\
+Example of how to show all users on the index page:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i \cf4 class UsersController < ApplicationController\
+  def index\
+    @users = User.all\
+  end\
+end
+\i0 \
+\
+The \'93II\'94 tab in Controllers/View section on the platform is a great source of info on this.\
+\
+\
+\
+\
+\
+\
+\
+}
