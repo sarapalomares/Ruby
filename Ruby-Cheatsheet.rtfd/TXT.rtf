@@ -1,10 +1,10 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red46\green111\blue253;\red127\green127\blue127;\red46\green111\blue253;
-\red0\green0\blue0;\red127\green127\blue127;}
-{\*\expandedcolortbl;;\csgenericrgb\c18039\c43529\c99216;\csgenericrgb\c49804\c49804\c49804;\csgenericrgb\c18039\c43529\c99216;
-\csgenericrgb\c0\c0\c0;\csgenericrgb\c49804\c49804\c49804;}
-\margl1440\margr1440\vieww8480\viewh11440\viewkind0
+{\colortbl;\red255\green255\blue255;\red46\green111\blue253;\red127\green127\blue127;\red0\green0\blue0;
+\red127\green127\blue127;}
+{\*\expandedcolortbl;;\csgenericrgb\c18039\c43529\c99216;\csgenericrgb\c49804\c49804\c49804;\csgenericrgb\c0\c0\c0;
+\csgenericrgb\c49804\c49804\c49804;}
+\margl1440\margr1440\vieww19840\viewh11440\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs36 \cf2 \ul \ulc2 Ruby Cheatsheet
@@ -45,11 +45,9 @@ There are many data types that we could put after our attributes.\
 \i  \
 \cf3 #will read the migration file and creates the database attached to our model. Needs to be typed in terminal every time a migration file is made. Confirm this migrated by navigating to db > migrate > scheme.db\
 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0\b \cf4 **** Adding to our Database *****
+\i0\b \cf2 **** Adding to our Database *****
 \i\b0 \cf3 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i0 \cf0 Type in terminal:
 \i \cf3 \
@@ -65,7 +63,7 @@ user1 = User.new
 \i \cf3 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 \cf5 user1[:last_name] = \'93Stark\'94\
+\i0 \cf4 user1[:last_name] = \'93Stark\'94\
 user1[:age] = 40\
 user1
 \i \cf3  #will give you what our information on User1 is so far\
@@ -73,9 +71,7 @@ user1
 
 \i0 \cf0 user1.save 
 \i \cf3 #you will see the \'93Insert Into\'94 SQL command\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf3 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\
 
 \i0 \cf0 user2 = User.new(first_name:\'94Cercei\'94, last_name:\'94Lannister\'94, age:35) 
 \i \cf3 #shows another way to create a user all on 1 line!\
@@ -94,7 +90,7 @@ User.create(first_name:\'94Jon\'94, last_name:\'94Snow, age:17, email:\'94know@n
 \i \cf3 #only works if you\'92ve installed the hirb gem\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 \cf5 User.all  
+\i0 \cf4 User.all  
 \i \cf3 #gives us a nice table-like visual of our users inside the terminal. Much nicer!\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
@@ -113,41 +109,47 @@ User.find_by(first_name:\'94Jon\'94)
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 \cf5 User.last.update(age:18) 
-\i \cf6 #changes Jon\'92s age to 18
-\i0 \cf5 \
+\i0 \cf4 User.last.update(age:18) 
+\i \cf3 #changes Jon\'92s age to 18
+\i0 \cf4 \
 User.first.update(first_name:\'94Ned\'94, email:\'94dead@dead.com\'94) 
-\i \cf6 #changes Eddard\'92s name to Ned and inputs an email address since it was empty before\cf3 \
+\i \cf3 #changes Eddard\'92s name to Ned and inputs an email address since it was empty before\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0\b \cf4 **** Validations *****\
+\i0\b \cf2 **** Validations *****\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b0 \cf5 Go into Atom and navigate to models > user.rb\
+\b0 \cf4 Go into Atom and navigate to models > user.rb\
 In the \'93Class User\'94 section, type the following:\
 validates :first_name, presence: true 
-\i \cf6 #now any time we create a new user, the first name field must be present\
+\i \cf3 #now any time we create a new user, the first name field must be present\
 
-\i0 \cf5 Now we can go into our console and type rails c and begin testing validations\
+\i0 \cf4 Now we can go into our console and type rails c and begin testing validations\
 In terminal:\
 User.new\
 jon.save 
-\i \cf6 #throws up a false, rollback transaction error because we have not entered in a first name
-\i0 \cf5 \
+\i \cf3 #throws up a false, rollback transaction error because we have not entered in a first name
+\i0 \cf4 \
 jon.errors.full_messages 
 \i \cf3 #gives us the error messages based on the validations we\'92ve set up
 \b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 \cf4 \
+\i0 \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b0 \cf5 We can take it a step further in our validations and type the following:\
+\b0 \cf4 We can take it a step further in our validations and type the following:\
 Validates :first_name, :last_name, presence: true, length: \{ in: 2..20 \} 
 \i \cf3 #length must be between 2 and 20 characters
 \b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 \cf4 \
+\i0 \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b0 \cf5 Back in terminal:\
+\b0 \cf4 Back in terminal:\
 reload! 
 \i \cf3 #will reload the latest changes we made to our model\
 \
@@ -164,12 +166,14 @@ validates_associated - use this when your model has associations with other mode
 :acceptance - validate whether a checkbox was checked when a form was submitted (usually for 'terms and conditions')\
 also, get familiar with :message and :on
 \b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 \cf4 \
+\i0 \cf2 \
 **** Email Validations *****\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b0 \cf5 Go into Atom and navigate to models > user.rb\
+\b0 \cf4 Go into Atom and navigate to models > user.rb\
 In the \'93Class User\'94 section above \'93validates\'94, type the following: \
 EMAIL_REGEX = /\\A([^@\\s]+)@((?:[-a-z0-9]+\\.)+[a-z]+)\\z/i\
 validates :email, presence: true, uniqueness: \{ case_sensitive: false \}, format: \{ with: EMAIL_REGEX \} \
@@ -179,41 +183,44 @@ arya.save
 \i \cf3 #this will throw up an error because the email address is invalid. If we type arya.errors.full_messages, we can see what the error specifically is
 \b \
 
-\i0\b0 \cf5 arya[:last_name] = \'93Stark\'94\
+\i0\b0 \cf4 arya[:last_name] = \'93Stark\'94\
 arya[:email] = \'93arya@stark.com\'94\
 arya.valid? 
 \i \cf3 #terminal will tell us if her fields are valid to save
 \b \
 
-\i0\b0 \cf5 arya.save
-\b \cf4 \
+\i0\b0 \cf4 arya.save
+\b \cf2 \
 \
 To make sure all email addresses entered into your database are lowercase..\
 \
 
-\b0 \cf5 Go into Atom and navigate to models > user.rb\
+\b0 \cf4 Go into Atom and navigate to models > user.rb\
 In the \'93Class User\'94 section under the validating text, type the following: 
-\b \cf4 \
+\b \cf2 \
 
-\b0 \cf5 before_save do\
+\b0 \cf4 before_save do\
 	self.email.downcase!\
 end\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b \cf4 **** Relationships *****\
+\b \cf2 **** Relationships *****\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b0 \cf5 \
+\b0 \cf4 \
 Example of a one to many relationship.. type in terminal (system console NOT rails console):\
 rails g model Product name:string price:float description:text 
 \b user:references
 \b0 \
 rake db:migrate\
 Go to user.rb in the Models folder and add \'93has_many :products\'94 as the very first line under class User \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i \cf3 #has_one = one user can have one product\
 #has_many = user can have many products\
 #has_many:through = allows associations even when there isn\'92t a direct connection between the models
-\i0 \cf5 \
+\i0 \cf4 \
 \
 Terminal\'85 rail c and enable Hirb\
 Product.new\
@@ -221,37 +228,58 @@ User.first.products.new \
 User.first.products.create(name:"iPad Gen 1", price:"199.99", description:"Used, but clean")\
 User.first.products 
 \i \cf3 #Shows all the products that User #1 has\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 \cf5 Product.all 
+\i0 \cf4 Product.all 
 \i \cf3 #Shows all products
 \b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 \cf4 \
+\i0 \cf2 \
 **** Migrations *****\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b0 \cf5 Say you want to go back to your table and add a column. We can add a category to products for example.\
+\b0 \cf4 Say you want to go back to your table and add a column. We can add a category to products for example.\
 In system console terminal:\
 rails generate migration AddCategoryToProducts 
 \i \cf3 #you can name this anything you want, but it helps to name it something that will be easily understood
-\i0\b \cf4 \
+\i0\b \cf2 \
 
-\b0 \cf5 Now go into Atom and open up the new file we just created in the Migrate folder\
+\b0 \cf4 Now go into Atom and open up the new file we just created in the Migrate folder\
 Type this in the \'93def change\'94 method: add_column :products, :category, :string
-\b \cf4 \
+\b \cf2 \
 
-\b0 \cf5 system console terminal: rake db:migrate
-\b \cf4 \
+\b0 \cf4 system console terminal: rake db:migrate
+\b \cf2 \
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 **** Routes *****\cf2 \
 \
-\
-\
-\
-\
-\
-\
-\
-\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 All CRUD applications can really be broken down into 7 unique actions. For example, let's say that we want to create a web application that allows us to create/retrieve/update/delete products. The web application needs to provide the following 7 pages/features.  rails generate controller [controller name here]\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 {{\NeXTGraphic Screen Shot 2017-02-14 at 11.28.06 AM.png \width18580 \height6320
+}¬}
+\b \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 **** Controllers *****\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i\b0 \cf3 \
-}
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf4 rails generate controller [controller name here.. 
+\b \cf4 \ul \ulc4 controller name is capitalized and plura
+\b0 \cf4 \ulnone l] #
+\i \cf3 Note: controller name is always plural. This will create an empty controller. \
+
+\i0 \cf4 rails generate controller [controller name here.. 
+\b \cf4 \ul \ulc4 controller name is capitalized and plura
+\b0 \ulnone l\cf4 ] [list of methods separated by space] 
+\i \cf5 #Example: 
+\b rails generate controller Comments index new 
+\b0 edit. If \cf3 you know what specific methods you want in the controller, you can enter them on the command line, and those methods will be automatically defined in the controller file that is generated.}
