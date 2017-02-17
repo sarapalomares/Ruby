@@ -1,10 +1,10 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;\red46\green111\blue253;\red127\green127\blue127;\red0\green0\blue0;
-\red127\green127\blue127;}
+\red255\green0\blue0;\red127\green127\blue127;}
 {\*\expandedcolortbl;;\csgenericrgb\c18039\c43529\c99216;\csgenericrgb\c49804\c49804\c49804;\csgenericrgb\c0\c0\c0;
-\csgenericrgb\c49804\c49804\c49804;}
-\margl1440\margr1440\vieww13740\viewh12680\viewkind0
+\csgenericrgb\c100000\c0\c0;\csgenericrgb\c49804\c49804\c49804;}
+\margl1440\margr1440\vieww17380\viewh12680\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs36 \cf2 \ul \ulc2 Ruby Cheatsheet
@@ -117,7 +117,160 @@ User.first.update(first_name:\'94Ned\'94, email:\'94dead@dead.com\'94)
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0\b \cf2 **** Validations *****\
+\i0\b \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf5 **** CREATING A NEW PROJECT ***** 
+\i\b0 (Using \'93User Management III\'94 as an example)
+\i0\b \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 In system terminal: 
+\b rails new [project name]
+\b0 \
+Add \'91hirb\'92 in gemfile, then in system terminal: 
+\b bundle install
+\b0 \
+In Atom, go into Views < Layouts < application.html.erb and then add the bootstrap CDN code on {\field{\*\fldinst{HYPERLINK "http://getbootstrap.com/getting-started/"}}{\fldrslt http://getbootstrap.com/getting-started/}}\
+Now we need to create the controller which will create methods to render different pages, etc. In system terminal: 
+\b rails g controller [controller name] OR rails g controller [controller name method method] 
+\i \cf3 #
+\b0 \cf3 for this example,
+\b \cf3  rails g controller Users index new show edit
+\i0 \cf4 \
+
+\b0 Now we have to modify our routes in config < routes.rb. You will see all the methods we created when we made the controller. Edit the index by typing 
+\b get '/' => 'users#index' 
+\i\b0 \cf3 (index controller, index method) \
+
+\i0 \cf4 Now we want to edit our index page. Go to app < views < users < index.html.erb to type in all your HTML for the home page. (See file for full code)\
+Now go back to routes and update the \'93new\'94 route to 
+\b get \'91users/new\'92 => \'91users#new\'92\
+
+\b0 Now go to show.html.erb file and type in your HTML. (See file for full code)\
+Now go to new.html.erb file and type in your HTMl. (See file for full code)\
+Now we need to go back to our routes file and edit the \'93Edit\'94 route to include the ID of the user you\'92re trying to edit. Type 
+\b get \'91users/:id/edit\'92 => \'91users#edit\'92 
+\i\b0 \cf3 #everything is through params: post, passing to the URL \'97 all accessed through params.
+\i0 \cf4 \
+Now we go to the edit.html.erb file and type in the HTML. (See file for full code)\
+Now we need to go back to our routes file AGAIN and edit the \'93show\'94 route to include the ID of the user you\'92re trying to edit. Type 
+\b get \'91users/:id\'92 => \'91users#show\'92\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i\b0 \cf3 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf4 Before we make the database, we want to make sure the controller works. Let\'92s go inside the html for the \'93new\'94 page. We have to add actions in the forms.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf4 <form action='/create' method='post'>\
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 Now we have to write a post request for this form. Go back to routes and add:
+\b  post \'91create\'92 => \'91users#create\'92\
+
+\b0 And then we have to go to our controller and add the \'93Create\'94 method. \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf4 def create\
+      render json: params 
+\i\b0 \cf3 #this will render the JSON info to see if our page is working correctly. We still haven\'92t set up the db just yet.\
+
+\i0\b \cf4 end\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 Let\'92s now create our models. In system terminal: 
+\b rails g model User first_name:string last_name:string email:string password:string
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf4 rake db:migrate 
+\i\b0 \cf6 #creating a model is a two-step process. Generate the migration file, then rake creates the table.
+\i0\b \cf4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 Go back to user controller and under the create method, type: 
+\b User.create(first_name: params[:f_name], last_name: params[:l_name], password: params[:password], email: params[:email])\
+
+\b0 Since a post request took us here, we need to redirect. Under the User.create section, type: 
+\b redirect_to \'93/\'93\
+
+\b0 Let\'92s test out if this works by going to localhost:3000/users/new and add a new person. Go to your rails console and type 
+\b User.all
+\b0  to see if the person you just added is there.\
+Let\'92s grab all the users on the homepage. In the users controller under the index method, type: 
+\b @users = User.all\
+
+\b0 Now we need to edit our index.html.erb file. (See code and remember to add the \'93/users/new\'94 as the href in the New User button. Also make sure to add the \'93/users/<%= user[\'91id\'92] %>\'94 href in the Show button). Test your localhost:3000 page and make sure the Show buttons work.\
+Now we need to update our User Controller under the show method, type this: 
+\b @user = User.find(params:[id]), 
+\b0 then
+\b  render json: @user 
+\b0 (you can take out the son, this is just to test our page to see if everything is working so far)\
+Now go to show.html.erb and make sure all the First Name, Last Name, etc\'85. Has the 
+\b <%= @user[\'91first_name\'92] %>
+\b0  and last name and email etc. Also edit the href for the Back button to be \'93/\'93 to go back to the home page. And for the Edit button, 
+\b "/users/<%= user['id'] %>/edit\'94
+\b0  \
+Now we want to update the edit.html.erb. We need to make sure this page has repopulated all the entries from the database so we don\'92t accidentally overwrite our record. \
+First, let\'92s go to the user controller and under the Edit method, type: 
+\b @user = User.find(params[:id]) \
+
+\b0 Then in the edit.html.erb we need to add values for all of the first name, last name, etc. Example: 
+\b value = "<%= @user['first_name'] %>"\
+
+\b0 Then we need to give the form an action of 
+\b \'93/update\'94 
+\b0 and a method of 
+\b \'93post\'94. 
+\b0 And add the token.\
+We need to now add a route. Add 
+\b post \'91update\'92 => \'91users#update\'92\
+
+\b0 Then in the edit.html.erb, add a hidden input under the token: 
+\b <input type="hidden" name="id" value="<%= @user['id'] %>"> 
+\i\b0 \cf6 #this will help us find the user when we add the update method in User Controller\
+
+\i0 \cf4 Now in the User Controller, add an update method:
+\i \cf6 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf4 def update\
+	User.find(params[:id]).update(first_name: params[:f_name], last_name: params[:l_name], password: params[:password], email: params[:email])\
+	redirect_to \'93/\'93\
+end\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 Finally, we need a delete route. Type: 
+\b get \'91delete/:id\'92 => \'91users#delete\'92 
+\i\b0 \cf6 #a tags should always be a get request
+\i0\b \cf4 \
+
+\b0 In User Controller, add a delete method:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf4 def delete\
+        render text: "Delete user with id #\{params[:id]\}" 
+\i\b0 \cf6 #this will test to see if this is working. We will change this code next.
+\i0\b \cf4 \
+end
+\b0 \
+Then in the index.html.erb, the href needs to be 
+\b "/delete/<%= user['id'] %>"
+\b0  \
+\
+Go back to the User Controller and edit the delete method:\
+
+\b def delete\
+        User.find(params[:id]).destroy\
+        redirect_to "/"\
+ end
+\i\b0 \cf6 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf2 \
+**** Validations *****\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -134,7 +287,7 @@ jon.save
 \i0 \cf4 \
 jon.errors.full_messages 
 \i \cf3 #gives us the error messages based on the validations we\'92ve set up
-\b \
+\b \cf3 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i0 \cf2 \
@@ -143,7 +296,7 @@ jon.errors.full_messages
 \b0 \cf4 We can take it a step further in our validations and type the following:\
 Validates :first_name, :last_name, presence: true, length: \{ in: 2..20 \} 
 \i \cf3 #length must be between 2 and 20 characters
-\b \
+\b \cf3 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i0 \cf2 \
@@ -165,7 +318,7 @@ Here is a short list of other types of validations:\
 validates_associated - use this when your model has associations with other models and they also need to be validated\
 :acceptance - validate whether a checkbox was checked when a form was submitted (usually for 'terms and conditions')\
 also, get familiar with :message and :on
-\b \
+\b \cf3 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i0 \cf2 \
@@ -181,13 +334,13 @@ Go back to rails console and type: reload!\
 arya = User.new(first_name:\'94Arya\'94, last_name:\'94S\'94, email:\'94arya@com\'94) \
 arya.save 
 \i \cf3 #this will throw up an error because the email address is invalid. If we type arya.errors.full_messages, we can see what the error specifically is
-\b \
+\b \cf3 \
 
 \i0\b0 \cf4 arya[:last_name] = \'93Stark\'94\
 arya[:email] = \'93arya@stark.com\'94\
 arya.valid? 
 \i \cf3 #terminal will tell us if her fields are valid to save
-\b \
+\b \cf3 \
 
 \i0\b0 \cf4 arya.save
 \b \cf2 \
@@ -232,7 +385,7 @@ User.first.products
 
 \i0 \cf4 Product.all 
 \i \cf3 #Shows all products
-\b \
+\b \cf3 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \i0 \cf2 \
@@ -256,18 +409,46 @@ Type this in the \'93def change\'94 method: add_column :products, :category, :st
 **** Routes *****\
 \
 
-\b0 \cf4 All CRUD applications can really be broken down into 7 unique actions. For example, let's say that we want to create a web application that allows us to create/retrieve/update/delete products. The web application needs to provide the following 7 pages/features.  rails generate controller [controller name here]\
+\b0 \cf4 All CRUD applications can really be broken down into 7 unique actions. For example, let's say that we want to create a web application that allows us to create/retrieve/update/delete products. The web application needs to provide the following 7 pages/features. \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 \cf0 {{\NeXTGraphic Screen Shot 2017-02-14 at 11.28.06 AM.png \width18580 \height6320
 }¬}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \b \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 \
+If you're going to follow the RESTful routes/rules, you can simply put something like below:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf4 resources :products
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i \cf3 #This will allow all the 7 URL requests for /products to work and navigates different URL requests to appropriate methods in the products controller. 
+\i0 \cf4 \
+\
+If you want to create non-RESTful routes, you can also do something like this:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf4 get '/products/' => 'products#index'\
+get '/products/:id' => 'products#show'
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i \cf3 #when the user wants to post information to /products/:id (e.g. products/1) have the products controller and edit method handle that request\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf4 post '/products/:id' => 'products#edit'\cf2 \
+\
 \
 **** Controllers *****\
 \
 \pard\pardeftab720\sl340\partightenfactor0
 
-\b0 \cf4 After the routes determine which controller and method should be run, it is up to the controller to make sense of the request and produce the appropriate output. In Rails, we will write most of our logic in our models, and use the controller to control flow.
+\i\b0 \cf4 After the routes determine which controller and method should be run
+\i0 , it is up to the controller to make sense of the request and produce the appropriate output. In Rails, we will write most of our logic in our models, and use the controller to control flow.
 \b \cf2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -284,11 +465,17 @@ Type this in the \'93def change\'94 method: add_column :products, :category, :st
 \b \ul controller name is capitalized and plura
 \b0 \ulnone l] [list of methods separated by space] 
 \i \cf3 #Example: 
-\b \cf3 rails generate controller Comments index new 
-\b0 \cf3 edit. If you know what specific methods you want in the controller, you can enter them on the command line, and those methods will be automatically defined in the controller file that is generated.\
+\b rails generate controller Comments index new 
+\b0 edit. If you know what specific methods you want in the controller, you can enter them on the command line, and those methods will be automatically defined in the controller file that is generated.\
 \
 
 \i0 \cf4 Any variable that begins with \'93@\'93 automatically becomes available in the View file.\
+\
+The 
+\i routing
+\i0  file tells us which method in the 
+\i controller
+\i0  file to run.\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -305,7 +492,10 @@ Example of how to show all users on the index page:\
 end
 \i0 \
 \
-The \'93II\'94 tab in Controllers/View section on the platform is a great source of info on this.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf4 The \'93II\'94 tab in Controllers/View section on the platform is a great source of info on this.
+\b0 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -334,9 +524,129 @@ Use scaffolding to create simple prototypes. Refer to the PDF cheatsheet that sh
 Generating a new scaffold..\
 Type in terminal:\
 rails g scaffold User first_name:string last_name:string email:string age:integer 
-\i \cf5 #controls a controller and user called \'93User\'94, creates a views file in the RESTful routes\cf4 \
+\i \cf3 #controls a controller and user called \'93User\'94, creates a views file in the RESTful routes\cf4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0 rake db:migrate\
+\i0 \cf4 rake db:migrate\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf2 **** Sessions *****\
 \
-}
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 A dictionary (key value pairs) to keep track of a small amount of info across many requests that one user makes.\
+\
+In the controller:
+\b \
+def index\
+	if !session[:count]\
+		session[:count] = 1\
+	else\
+		session[:count] += 1\
+	end\
+\
+	@count = session[:count] 
+\i\b0 \cf3 #the @ makes it global to anything that you render. It can be accessed anywhere.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf4 end\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 \
+Go into your HTML:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf4 <h1>Number of Visits: <%= @count %></h1> 
+\i\b0 \cf3 #this will add the session in the HTML
+\i0\b \cf4 \
+<a href=\'93/reset\'94>Reset</a> 
+\i\b0 \cf3 #this will tell the page that we want to destroy the session by calling the \'93reset\'94 route in the routes
+\i0\b \cf4 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 To clear the session, go to routes:
+\b \
+get \'93/reset\'94 => \'93main#resetSession\'94
+\b0 \
+\
+Back to the controller:
+\b \
+def resetSession\
+	reset_session 
+\i\b0 \cf3 #this is basically just a built-in function that wipes out the session for the user
+\i0\b \cf4 \
+	redirect_to \'93/\'93\
+end\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 **** bcrypt *****\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 After installing bcrypt gem, you must restart the rails server\
+When creating a model,
+\b  password: digest 
+\i\b0 \cf6 (Example: 
+\b rails g model User first_name:string last_name:string email:string \ul password:digest
+\b0 )\
+
+\i0 \cf4 \ulnone MUST be named 
+\b password_confirmation
+\b0  when creating a method. 
+\i \cf3 (Example: user = User.create(name: params[:name], email: params[:email], 
+\b \ul password_confirmation:
+\b0 \ulnone  params[:password_confirmation])\
+\
+
+\i0 \cf4 def login\
+	user = User.find_by_email(params[:email] 
+\i \cf3 #find_by_email is built into Rails
+\i0 \cf4 \
+	if user && user.authenticate(params[:password]) 
+\i \cf6 #goes and looks for the password digest\
+		
+\i0 \cf4 session[:user_id] = user[:id]\
+		redirect_to \'93/show\'94\
+	else\
+		render text: \'93Something was wrong with login credentials\'94\
+	end
+\b \cf2 \
+
+\b0 \cf4 end\
+\
+
+\i \cf6 #to prevent someone from just going to localhost:3000/show, check if they are in session:
+\i0 \cf4 \
+def show\
+	if session[:user_id]\
+		render \'93/show\'94\
+	else\
+		redirect_to \'93/\'93\
+	end\
+end\
+\
+\cf6 **OR**\cf4 \
+\
+before_action :check_status 
+\i \cf6 #before any of the following code runs, check this method first. Put at the beginning of your controller.
+\i0 \cf4 \
+\
+private\
+def check_status\
+	if session[:user_id]\
+		render \'93/show\'94\
+	else\
+		redirect_to \'93/\'93\
+	end\
+end
+\b \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 **** Random Notes *****\cf4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 Hash is a dictionary in rails.. (key value pairs)\
+When doing a form, need action, method, name, authenticity token, password confirmation(if using bcrypt)}
