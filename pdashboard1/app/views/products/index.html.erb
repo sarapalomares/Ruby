@@ -1,0 +1,30 @@
+<title>All the Products</title>
+<div class="container">
+<h2>Listing Products</h2>
+      <table class="table table-striped">
+            <thead>
+                  <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Options</th>
+                  </tr>
+            </thead>
+            <tbody>
+
+                  <% @product.each do |product|%>
+                  <tr>
+                        <td><%= product['name'] %></td>
+                        <td><%= product['description'] %></td>
+                        <td>$<%= product['pricing'] %></td>
+                        <td>
+                        <a href="/products/<%= product['id'] %>" class= 'btn btn-default'>Show</a> | <a href="/products/<%= product['id'] %>/edit"  class= 'btn btn-default'>Edit</a> | <a href="/delete/<%= product['id'] %>" class= 'btn btn-default'>Destroy</a>
+                        </td>
+                  </tr>
+                  <% end %>
+            </tbody>
+      </table>
+      <div class="row">
+            <a href="/products/new" class= 'btn btn-default'>New Product</a>
+      </div>
+</div>
