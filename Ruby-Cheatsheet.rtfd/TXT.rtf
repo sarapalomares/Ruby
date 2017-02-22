@@ -590,15 +590,15 @@ end\
 When creating a model,
 \b  password: digest 
 \i\b0 \cf3 (Example: 
-\b rails g model User first_name:string last_name:string email:string \cf3 \ul password:digest
+\b rails g model User first_name:string last_name:string email:string \ul password:digest
 \b0 )\
 
 \i0 \cf4 \ulnone MUST be named 
 \b password_confirmation
 \b0  when creating a method. 
 \i \cf3 (Example: user = User.create(name: params[:name], email: params[:email], 
-\b \cf3 \ul password_confirmation:
-\b0 \cf3 \ulnone  params[:password_confirmation])\
+\b \ul password_confirmation:
+\b0 \ulnone  params[:password_confirmation])\
 \
 
 \i0 \cf4 def login\
@@ -647,7 +647,25 @@ end
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 \cf4 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf2 **** Random Notes *****\cf4 \
+\cf2 **** RSpec *****\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 After creating your rails app, add the following to your Gemfile and save:\
+
+\b group :development, :test do\
+	gem 'rspec-rails'\
+end\
+
+\b0 Then run 
+\b bundle install
+\b0 , then 
+\b rails generate rspec:install 
+\b0 in system terminal (make sure you\'92re in the app folder)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf2 \
+\
+**** Random Notes *****\cf4 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \b0 \cf4 Hash is a dictionary in rails.. (key value pairs)\
