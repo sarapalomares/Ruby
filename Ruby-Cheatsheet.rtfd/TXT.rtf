@@ -1,10 +1,13 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 Times-Roman;\f2\fnil\fcharset0 Monaco;
+}
 {\colortbl;\red255\green255\blue255;\red46\green111\blue253;\red127\green127\blue127;\red0\green0\blue0;
-\red255\green0\blue0;}
+\red255\green0\blue0;\red127\green127\blue127;\red88\green209\blue235;\red29\green30\blue26;\red246\green246\blue239;
+\red244\green0\blue95;\red224\green213\blue97;\red152\green224\blue36;\red93\green108\blue125;}
 {\*\expandedcolortbl;;\csgenericrgb\c18039\c43529\c99216;\csgenericrgb\c49804\c49804\c49804;\csgenericrgb\c0\c0\c0;
-\csgenericrgb\c100000\c0\c0;}
-\margl1440\margr1440\vieww17380\viewh12680\viewkind0
+\csgenericrgb\c100000\c0\c0;\csgenericrgb\c49804\c49804\c49804;\cssrgb\c40000\c85098\c93725;\cssrgb\c15294\c15686\c13333;\cssrgb\c97255\c97255\c94902;
+\cssrgb\c97647\c14902\c44706;\cssrgb\c90196\c85882\c45490;\cssrgb\c65098\c88627\c18039;\cssrgb\c43922\c50196\c56471;}
+\margl1440\margr1440\vieww20540\viewh12680\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
 
 \f0\b\fs36 \cf2 \ul \ulc2 Ruby Cheatsheet
@@ -120,7 +123,24 @@ User.first.update(first_name:\'94Ned\'94, email:\'94dead@dead.com\'94)
 \i0\b \cf2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 \cf5 **** CREATING A NEW PROJECT ***** 
-\i\b0 (Using \'93User Management III\'94 as an example)
+\i\b0 (Using \'93User Management III\'94 as an example)\
+\
+Step1: add bootstrap\
+Step 2: generate a controller \
+Step 3: modify our routes, get \'91/\'91 => \'91users#index\'92\
+Step 4: modify index.html.erb\
+Step 5: modify routes, get \'91users/show\'92 => \'91users#show\'92\
+Step 6: modify show.html.erb\
+Step 7: modify our routes, get \'91users/new\'92 => \'91users#new\'92\
+Step 8\'85 see the theme here? Modify routes, edit html, modify routes, edit html\
+\
+Step 9: Now that we have the HTML knocked out, we can get started with the back end!\
+Step 10: Go back to new.html.erb and make sure all the form actions work. \
+Step 11: Make sure the routes have the post methods for the forms.\
+\
+Step 12: Now we can create our models!\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
 \i0\b \cf2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -366,9 +386,10 @@ end\
 \b0 \cf4 \
 Example of a one to many relationship.. type in terminal (system console NOT rails console):\
 rails g model Product name:string price:float description:text 
-\b user:references
-\b0 \
-rake db:migrate\
+\b user:references 
+\i\b0 \cf6 #to create a relationship, type the name of the model it references followed by \'93references\'94. ALWAYS use singular term for references.\
+
+\i0 \cf4 rake db:migrate\
 Go to user.rb in the Models folder and add \'93has_many :products\'94 as the very first line under class User \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -424,13 +445,16 @@ If you're going to follow the RESTful routes/rules, you can simply put something
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b \cf4 resources :products
-\b0 \
+\b \cf4 resources :products 
+\i\b0 \cf6 #put this in routes.db\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf3 #This will allow all the 7 URL requests for /products to work and navigates different URL requests to appropriate methods in the products controller. \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i \cf3 #This will allow all the 7 URL requests for /products to work and navigates different URL requests to appropriate methods in the products controller. 
-\i0 \cf4 \
-\
+\i0 \cf4 Then in system terminal type 
+\b rake routes\
+
+\b0 \
 If you want to create non-RESTful routes, you can also do something like this:\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -442,7 +466,11 @@ get '/products/:id' => 'products#show'
 \i \cf3 #when the user wants to post information to /products/:id (e.g. products/1) have the products controller and edit method handle that request\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\i0\b \cf4 post '/products/:id' => 'products#edit'\cf2 \
+\i0\b \cf4 post '/products/:id' => 'products#edit'\
+\
+root \'91products#index\'92 
+\i\b0 \cf6 #this will go to the index page
+\i0\b \cf2 \
 \
 \
 **** Controllers *****\
@@ -496,14 +524,213 @@ end
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b \cf4 The \'93II\'94 tab in Controllers/View section on the platform is a great source of info on this.
+\b \cf4 Any variable that begins with @ automatically becomes available in the view file, such as the index.html.erb\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 \ul Products controller:
+\b \ulnone \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\b0 \cf7 \cb8 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 def
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  index\
+  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 @products
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 =
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 Product\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 .
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 all\
+
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 end
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 def
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  create\
+  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 @product
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 =
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 Product\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 .\cf11 \strokec11 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 create\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 (
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  name
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  params
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 [\cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :name\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ],
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  description
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  params
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 [\cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :description\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ])
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+  redirect_to 
+\f1 \cf12 \strokec12 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 '/products/index'
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 end
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b \cf4 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \shad0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 \ul HTML:
+\b \ulnone \
+<% @products.each do | product | %>\
+	<%= product.name %>\
+	\cf4 <%= product.description %>\
+	<%= product.created_at %>\cf4 \
+<% end %>\
+
 \b0 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b \cf2 **** Views *****
-\b0 \cf4 \
+\b \cf2 **** Session *****\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf4 Session should be used to store small info, such as user ID or username. Session is just a hash: to store a new piece of data in it, simply set the key and value.\
+\
+If you need to clear a whole session, you can use 
+\b session.clear
+\b0  (or: 
+\b reset_session
+\b0 ).
+\b \cf2 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\b0 \cf7 \cb8 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 class
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 UsersController
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 <
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ApplicationController
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+  
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 def
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  create\
+    
+\f1 \cf13 \strokec13 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 #adds the value in params[:id] to the :id key in session
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+    session
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 [\cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :id\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ]
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 =
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  params
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 [\cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :id\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ]
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf13 \strokec13 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 #we will talk about params in a bit
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+  
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 end
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+  
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 def
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  log_out\
+    
+\f1 \cf13 \strokec13 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 #sets the session[:id] to nil, overwriting the previous value
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+    session
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 [\cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :id\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ]
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 =
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 nil
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+  
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 end
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 end
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b \cf2 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \shad0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 **** Flash *****\
+\
+
+\b0 \cf4 Flash is similar to session, but it is only available for \ul one request/response cycle\ulnone .\
+\
+Typically used to display error messages.\
+\
+Flash is a hash, so we need to use a key.\cf4 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1 \cf7 \cb8 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 class
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 UsersController
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 <
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ApplicationController
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+  
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 def
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  create\
+    user 
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 =
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 User\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 .\cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 new\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 (
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 name
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :\cf12 \strokec12 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ""\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ,
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  email
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :\cf12 \strokec12 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 "not_valid"\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 )
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+    
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 if
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 !
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 user
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 .
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 valid
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ?
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+      flash
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 [\cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :error\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ]
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 =
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf12 \strokec12 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 "You have errors"
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+      redirect_to 
+\f1 \cf12 \strokec12 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 '/users/'
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf13 \strokec13 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 #pathing will be explained later
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+    
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 else
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+      flash
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 [\cf10 \strokec10 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 :success\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 ]
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 =
+\f2 \shad\shadx0\shady-20\shadr0\shado76 \shadc4  
+\f1 \cf12 \strokec12 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 "You did it!"
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+      redirect_to 
+\f1 \cf12 \strokec12 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 '/users/'
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+    
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 end
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+  
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 end
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+
+\f1 \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 end
+\f2 \cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado76 \shadc4 \
+
+\f0 \cf4 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \shad0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \b \cf2 **** Form Helpers ***** 
 \i (Use these when you become a higher-level developer, as new developers get stuck on using these)
@@ -651,12 +878,14 @@ end
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \b0 \cf4 After creating your rails app, add the following to your Gemfile and save:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b group :development, :test do\
+\b \cf4 group :development, :test do\
 	gem 'rspec-rails'\
 end\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\b0 Then run 
+\b0 \cf4 Then run 
 \b bundle install
 \b0 , then 
 \b rails generate rspec:install 
