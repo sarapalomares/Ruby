@@ -9,7 +9,7 @@
 .login, .registration {
       width: 500px;
       padding: 10px;
-      border: 2px #009AC7 solid;
+      border: 1px #009AC7 solid;
       border-radius: 10px;
       display: inline-block;
 }
@@ -30,8 +30,9 @@
 }
 
 .users_all {
+      width: 600px;
       border-radius: 10px;
-      border: 2px #009AC7 solid;
+      border: 1px #009AC7 solid;
       padding-left: 5px;
       padding-top: 5px;
 }
@@ -48,4 +49,13 @@
 .enter_password {
       font-weight: bold;
       color: red;
+}
+
+.pw_rules {
+      font-weight: bold;
+      color: #009AC7;
+}
+
+.edit_info {
+      width: 600px;
 }
