@@ -7,6 +7,8 @@
 {\*\expandedcolortbl;;\csgenericrgb\c18039\c43529\c99216;\csgenericrgb\c49804\c49804\c49804;\csgenericrgb\c0\c0\c0;
 \csgenericrgb\c100000\c0\c0;\csgenericrgb\c49804\c49804\c49804;\cssrgb\c40000\c85098\c93725;\cssrgb\c15294\c15686\c13333;\cssrgb\c97255\c97255\c94902;
 \cssrgb\c97647\c14902\c44706;\cssrgb\c90196\c85882\c45490;\cssrgb\c65098\c88627\c18039;\cssrgb\c43922\c50196\c56471;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\})}{\leveltext\leveltemplateid1\'02\'00);}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid2\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
 \margl1440\margr1440\vieww20540\viewh12680\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
 
@@ -287,11 +289,87 @@ Go back to the User Controller and edit the delete method:\
 \b def delete\
         User.find(params[:id]).destroy\
         redirect_to "/"\
- end
-\i\b0 \cf3 \
+ end\
+\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-
-\i0\b \cf2 \
+\cf2 **** Login & Registration *****\
+\
+\pard\tx220\tx564\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0
+\b0 \cf4 {\listtext	1)	}Create your new project, and install Bcrypt. Bundle install!\
+\pard\tx220\tx564\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li581\fi-582\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf4 {\listtext	2)	}Create your first model: 
+\b rails g model User first_name:string last_name:string email:string
+\b0  
+\b \ul password:digest
+\b0 \
+\pard\tx220\tx564\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf4 \ulnone {\listtext	3)	}
+\b rake db:migrate 
+\i\b0 (if you have Postgres installed, you want to do 
+\b rake db:create
+\b0  first!)\
+\pard\tx220\tx564\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li563\fi-564\pardirnatural\partightenfactor0
+\ls1\ilvl0
+\i0 \cf4 {\listtext	4)	}Create a users controller in system console: 
+\b rails g controller Users 
+\i\b0 (you can add methods here, such as index new edit show etc\'85) 
+\i0 This creates a User folder where all of our html will go.\
+\pard\tx220\tx564\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li543\fi-544\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf4 {\listtext	5)	}Go to Routes.rb and enter 
+\b get \'93/\'94 => \'93users#index\'94 
+\i\b0 (If we added the methods when we created the controller, all the GET requests would have been automatically populated.) 
+\i0 \
+\pard\tx220\tx564\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0
+\i \cf4 {\listtext	6)	}
+\i0 Go to Users Controller and add the \'93index\'94 method:\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural\partightenfactor0
+\ls1\ilvl1
+\i\b \cf4 {\listtext	\uc0\u8259 	}
+\i0 def index\
+{\listtext	\uc0\u8259 	}end\
+\pard\tx220\tx576\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li566\fi-567\pardirnatural\partightenfactor0
+\ls1\ilvl0
+\i\b0 \cf4 {\listtext	7)	}
+\i0 Create the \'93index.html.erb\'94 file and create a form like the one below. This will be our registration form:\cf0 {{\NeXTGraphic Screen Shot 2017-03-03 at 1.15.12 PM.png \width18180 \height7580
+}¬}\cf4 \
+\ls1\ilvl0{\listtext	8)	}Go to Routes.rb and make sure we\'92ve added the \'93/create\'94 capability. Enter
+\b  post \'93/create\'94 => \'93user#create\'94\
+{\listtext	9)	}
+\b0 Go to User Controller to add the Create method:\
+\ls1\ilvl0\cf0 {\listtext	10)	}{{\NeXTGraphic Screen Shot 2017-03-03 at 1.25.48 PM.png \width17720 \height5520
+}¬}\
+\pard\tx220\tx576\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li607\fi-608\pardirnatural\partightenfactor0
+\ls1\ilvl0
+\b \cf4 {\listtext	11)	}
+\b0  Check to make sure we have a \'93/show\'94 method in the Routes.rb AND the User Controller.\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural\partightenfactor0
+\ls1\ilvl1
+\b \cf4 {\listtext	\uc0\u8259 	}
+\b0 Routes: 
+\b \'93/show\'94 => \'93users#show\'94\
+{\listtext	\uc0\u8259 	}
+\b0 User Controller:
+\b  def show, @users = User.all, end\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0
+\b0 \cf4 {\listtext	12)	}Here is our show page html, that will show ALL the Users:\
+\ls1\ilvl0\cf0 {\listtext	13)	}{{\NeXTGraphic Screen Shot 2017-03-03 at 2.09.16 PM.png \width14280 \height12300
+}¬}\
+\ls1\ilvl0\cf4 {\listtext	14)	}Let\'92s get our login working. Here is the User Controller where we add the login method (see below). If we don\'92t do 
+\b if user && user.authenticate
+\b0 , user will be nil. That\'92s why we need both.{{\NeXTGraphic Screen Shot 2017-03-03 at 2.28.09 PM.png \width10480 \height4360
+}¬}\
+\ls1\ilvl0{\listtext	15)	}And add the code below to the bottom of your index.html.erb file:\
+\ls1\ilvl0\cf0 {\listtext	16)	}{{\NeXTGraphic Screen Shot 2017-03-03 at 2.34.25 PM.png \width15400 \height5080
+}¬}\
+\ls1\ilvl0\cf4 {\listtext	17)	}Time to validate! Go into your User.rb file:\
+\ls1\ilvl0\cf0 {\listtext	18)	}{{\NeXTGraphic Screen Shot 2017-03-03 at 2.49.23 PM.png \width17980 \height6660
+}¬}
+\b \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 \
 **** Validations *****\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
